@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+
+  background-color: #e9e6e6;
+
+  border-radius: 0 0 2rem 2rem;
+
+  &__link {
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

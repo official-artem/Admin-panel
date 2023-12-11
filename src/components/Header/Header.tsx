@@ -1,9 +1,11 @@
+import './styles/header.scss';
+
 export default function Header() {
   return (
-    <header>
-      <span>Admin panel</span>
+    <header className='header'>
+      <span className='header__title'>Admin panel</span>
 
-      <a href='/'>Create new user</a>
+      <a className='header__link' href='/'>Create new user</a>
     </header>
   )
 }
