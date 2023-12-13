@@ -13,7 +13,7 @@ interface Props {
 
 export const UserList: FC<Props> = ({ isCreateNewUser, setCreateNewUser }) => {
   const [ users, setUsers ] = useState<UserType[]>([])
-  const [ selectedUserId, setSelectedUserId ] = useState<string | null>('');
+  const [ selectedUserId, setSelectedUserId ] = useState<string>('');
   const newUser = {
     id: '',
     name: '',
@@ -26,7 +26,9 @@ export const UserList: FC<Props> = ({ isCreateNewUser, setCreateNewUser }) => {
 
   useEffect(() => {
     getUsers()
-      .then(setUsers)
+      .then((users: UserType[]) => {
+        setUsers(users.sort((user1, user2) => user1.id.localeCompare(user2.id)))
+      })
   }, [selectedUserId, isCreateNewUser])
 
   return (
@@ -38,7 +40,7 @@ export const UserList: FC<Props> = ({ isCreateNewUser, setCreateNewUser }) => {
             (
             users.map(user => {
               if (user.id === selectedUserId) {
-                return <UserForm user={user} action='Update' handleSelectUser={setSelectedUserId} />;
+                return <UserForm user={user} action='Update' key={user.id} handleSelectUser={setSelectedUserId} />;
               } else {
                 return <User user={user} key={user.id} handleSelectUser={setSelectedUserId} />;
               }
@@ -46,7 +48,7 @@ export const UserList: FC<Props> = ({ isCreateNewUser, setCreateNewUser }) => {
             ))
           :
             (
-          <CreateUserForm user={newUser} setCreateNewUser={setCreateNewUser} action='Create'/>
+              <CreateUserForm user={newUser} setCreateNewUser={setCreateNewUser} action='Create'/>
             )
           }
     </main>

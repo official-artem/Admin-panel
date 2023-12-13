@@ -14,7 +14,7 @@ export const CreateUserForm: FC<Props> = ({ user, action, setCreateNewUser }) =>
   const [ number, setNumber ] = useState(user.number);
   const [ country, setCountry ] = useState(user.country);
   const [ height, setHeight ] = useState(user.height);
-  const [weight, setWeight ] = useState(user.weight);
+  const [ weight, setWeight ] = useState(user.weight);
 
   const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.currentTarget.value);
@@ -46,19 +46,55 @@ export const CreateUserForm: FC<Props> = ({ user, action, setCreateNewUser }) =>
       height,
       weight
     })
-
-    setCreateNewUser(false);
+      .then(() => setCreateNewUser(false));
   }
 
   return (
     <form className='form' onSubmit={handleSubmit}>
-      <input type='text' placeholder='Name' value={name} onChange={handleName} />
-      <input type='text' placeholder='Surname' value={surname} onChange={handleSurname} />
-      <input type='text' placeholder='Number' value={number} onChange={handleNumber} />
-      <input type='text' placeholder='Country' value={country} onChange={handleCountry} />
-      <input type='text' placeholder='Height' value={height} onChange={handleHeight} />
-      <input type='text' placeholder='Weight' value={weight} onChange={handleWeight} />
+      <input 
+        type='text' 
+        required 
+        placeholder='Name' 
+        value={name} 
+        onChange={handleName} 
+      />
+      <input 
+        type='text' 
+        required 
+        placeholder='Surname' 
+        value={surname} 
+        onChange={handleSurname} 
+      />
+      <input 
+        type='text' 
+        required 
+        placeholder='Number' 
+        value={number} 
+        onChange={handleNumber} 
+      />
+      <input 
+        type='text' 
+        required 
+        placeholder='Country' 
+        value={country} 
+        onChange={handleCountry} 
+      />
+      <input 
+        type='text' 
+        required 
+        placeholder='Height' 
+        value={height} 
+        onChange={handleHeight} 
+      />
+      <input 
+        type='text' 
+        required 
+        placeholder='Weight' 
+        value={weight} 
+        onChange={handleWeight} 
+      />
       <button>{action}</button>
     </form>
   )
+    
 }

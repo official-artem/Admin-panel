@@ -5,7 +5,7 @@ import { updateUser } from '../../service/user';
 interface Props {
   user: UserType,
   action: string,
-  handleSelectUser: (id: string | null) => void
+  handleSelectUser: (id: string) => void
 }
 
 export const UserForm: FC<Props> = ({ user, action, handleSelectUser }) => {
@@ -45,15 +45,15 @@ export const UserForm: FC<Props> = ({ user, action, handleSelectUser }) => {
       country,
       height,
       weight
-    }),
-      handleSelectUser(null);
+    })
+      .then(() => handleSelectUser(''));
   }
 
   return (
     <form className='form' onSubmit={handleSubmit}>
       <input type='text' placeholder={user.name} value={name} onChange={handleName} />
       <input type='text' placeholder={user.surname} value={surname} onChange={handleSurname} />
-      <input type='number' placeholder={user.number} value={number} onChange={handleNumber} />
+      <input type='text' placeholder={user.number} value={number} onChange={handleNumber} />
       <input type='text' placeholder={user.country} value={country} onChange={handleCountry} />
       <input type='text' placeholder={user.height} value={height} onChange={handleHeight} />
       <input type='text' placeholder={user.weight} value={weight} onChange={handleWeight} />
