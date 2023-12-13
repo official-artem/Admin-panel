@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { UserType } from '../data/types/user';
 
-axios.defaults.baseURL = 'admin-panel-server-production.up.railway.app'
+axios.defaults.baseURL = 'https://admin-panel-server-production.up.railway.app/'
 
 export async function getUsers() {
   return await axios.get('/users')
